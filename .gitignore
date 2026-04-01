@@ -2,8 +2,10 @@
 Gateway
 cmd/gateway/gateway
 
-# Environment
+# Environment & secrets
 .env
+.env.*
+!.env.example
 
 # Go
 vendor/
@@ -15,5 +17,20 @@ frontend/dist/
 # macOS
 .DS_Store
 
-# Claude Code
-.claude/
+
+# IDE
+.vscode/
+.idea/
+
+# Test/coverage artifacts
+coverage.out
+*.test
+
+# Docker data
+postgres_data/
+
+# OS artifacts
+Thumbs.db
+*.swp
+*.swo
+*~
