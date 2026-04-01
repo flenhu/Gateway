@@ -9,6 +9,8 @@
 # Environment and secrets
 .env
 .env.*
+**/.env
+**/.env.*
 !.env.example
 !**/.env.example
 
@@ -30,6 +32,7 @@ coverage.out
 # Local tooling and editors
 .vscode/
 .idea/
+.claude/settings.local.json
 *.swp
 *.swo
 *~
