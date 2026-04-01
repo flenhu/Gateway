@@ -14,11 +14,16 @@ import (
 )
 
 func main() {
-	cfg := config.Load()
+	cfg, err := config.Load()
+	if err != nil {
+		log.Fatalf("load config: %v", err)
+	}
 
 	server := &http.Server{
 		Addr:              cfg.Addr(),
 		Handler:           router.New(),
+		ReadTimeout:       cfg.Server.ReadTimeout,
+		WriteTimeout:      cfg.Server.WriteTimeout,
 		ReadHeaderTimeout: 5 * time.Second,
 	}
 
