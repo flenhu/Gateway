@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+gateway
+Gateway
+coverage.out
+*.test
+*.prof
+.DS_Store
+Thumbs.db
+frontend/node_modules
+frontend/dist
+frontend/dist-ssr
+frontend/coverage
+frontend/.vite
