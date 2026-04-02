@@ -1,4 +1,4 @@
-.PHONY: build run test test-cover lint docker-up docker-down
+.PHONY: build run test test-cover lint docker-up docker-down smoke
 
 build:
 	go build -o gateway ./cmd/gateway
@@ -24,3 +24,6 @@ docker-down:
 
 docker-up-db:
 	docker compose up -d postgres
+
+smoke:
+	./scripts/smoke_chat.sh
