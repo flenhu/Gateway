@@ -1,120 +1,116 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { BrowserRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <BrowserRouter>
+      <div className="app-shell">
+        <header className="app-header">
+          <div className="app-header__brand">
+            <p className="app-header__eyebrow">LLM Gateway</p>
+            <h1>Compare models or let the gateway choose.</h1>
+            <p className="app-header__lede">
+              Phase 3 starts here: the frontend is now routed and ready for
+              mock-driven API integration.
+            </p>
+          </div>
 
-      <div className="ticks"></div>
+          <nav className="app-nav" aria-label="Primary">
+            <NavLink
+              end
+              to="/"
+              className={({ isActive }) =>
+                isActive ? 'app-nav__link app-nav__link--active' : 'app-nav__link'
+              }
+            >
+              Best Pick
+            </NavLink>
+            <NavLink
+              to="/compare"
+              className={({ isActive }) =>
+                isActive ? 'app-nav__link app-nav__link--active' : 'app-nav__link'
+              }
+            >
+              Compare
+            </NavLink>
+          </nav>
+        </header>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<BestPickPlaceholder />} />
+            <Route path="/compare" element={<ComparePlaceholder />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
+  )
+}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+function BestPickPlaceholder() {
+  return (
+    <section className="mode-panel">
+      <div className="mode-panel__copy">
+        <p className="mode-panel__label">Default Route</p>
+        <h2>Best Pick</h2>
+        <p>
+          This route will send one request and let the gateway choose the best
+          available provider.
+        </p>
+      </div>
+
+      <div className="mode-panel__details">
+        <InfoTile
+          title="Input Flow"
+          body="A shared prompt input will live here in the next step."
+        />
+        <InfoTile
+          title="Response Shape"
+          body="One response card will render the chosen provider, latency, cost, and token usage."
+        />
+      </div>
+    </section>
+  )
+}
+
+function ComparePlaceholder() {
+  return (
+    <section className="mode-panel">
+      <div className="mode-panel__copy">
+        <p className="mode-panel__label">Comparison Route</p>
+        <h2>Compare</h2>
+        <p>
+          This route will fetch the model list, fan out requests in parallel,
+          and render results side by side.
+        </p>
+      </div>
+
+      <div className="mode-panel__details">
+        <InfoTile
+          title="Selection Rule"
+          body="The first version will compare every model returned by the registry."
+        />
+        <InfoTile
+          title="Mock First"
+          body="All of this will run against imported JSON before any real gateway calls are enabled."
+        />
+      </div>
+    </section>
+  )
+}
+
+type InfoTileProps = {
+  title: string
+  body: string
+}
+
+function InfoTile({ title, body }: InfoTileProps) {
+  return (
+    <article className="info-tile">
+      <h3>{title}</h3>
+      <p>{body}</p>
+    </article>
   )
 }
 
