@@ -46,6 +46,7 @@ pnpm-debug.log*
 
 # Local data
 postgres_data/
+.tmp/
 
 # OS artifacts
 .DS_Store
