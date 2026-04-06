@@ -1,4 +1,5 @@
 import { BrowserRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom'
+import { CompareView } from './pages/CompareView'
 import './App.css'
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
         <main className="app-main">
           <Routes>
             <Route path="/" element={<BestPickPlaceholder />} />
-            <Route path="/compare" element={<ComparePlaceholder />} />
+            <Route path="/compare" element={<CompareView />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
@@ -68,32 +69,6 @@ function BestPickPlaceholder() {
         <InfoTile
           title="Response Shape"
           body="One response card will render the chosen provider, latency, cost, and token usage."
-        />
-      </div>
-    </section>
-  )
-}
-
-function ComparePlaceholder() {
-  return (
-    <section className="mode-panel">
-      <div className="mode-panel__copy">
-        <p className="mode-panel__label">Comparison Route</p>
-        <h2>Compare</h2>
-        <p>
-          This route will fetch the model list, fan out requests in parallel,
-          and render results side by side.
-        </p>
-      </div>
-
-      <div className="mode-panel__details">
-        <InfoTile
-          title="Selection Rule"
-          body="The first version will compare every model returned by the registry."
-        />
-        <InfoTile
-          title="Mock First"
-          body="All of this will run against imported JSON before any real gateway calls are enabled."
         />
       </div>
     </section>
