@@ -13,6 +13,7 @@
 **/.env.*
 !.env.example
 !**/.env.example
+!frontend/.env.development
 
 # Go
 vendor/
@@ -47,6 +48,7 @@ pnpm-debug.log*
 # Local data
 postgres_data/
 .tmp/
+/context/
 
 # OS artifacts
 .DS_Store

@@ -1,0 +1,28 @@
+{
+  "id": "chatcmpl-mock-groq-70b",
+  "object": "chat.completion",
+  "created": 1775111400,
+  "model": "llama-3.3-70b-versatile",
+  "provider": "groq",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "TCP is a reliable, connection-oriented transport protocol that makes sure data arrives in order."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 30,
+    "completion_tokens": 18,
+    "total_tokens": 48
+  },
+  "gateway_meta": {
+    "latency_ms": 412,
+    "provider": "groq",
+    "fallback_used": false,
+    "cost_estimate_usd": 0.00003108
+  }
+}

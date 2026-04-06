@@ -1,0 +1,28 @@
+{
+  "id": "chatcmpl-mock-groq-8b",
+  "object": "chat.completion",
+  "created": 1775111401,
+  "model": "llama-3.1-8b-instant",
+  "provider": "groq",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "TCP is the internet protocol that keeps a conversation ordered, reliable, and intact from one machine to another."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 30,
+    "completion_tokens": 21,
+    "total_tokens": 51
+  },
+  "gateway_meta": {
+    "latency_ms": 205,
+    "provider": "groq",
+    "fallback_used": false,
+    "cost_estimate_usd": 0.00000318
+  }
+}

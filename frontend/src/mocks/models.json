@@ -1,0 +1,16 @@
+{
+  "models": [
+    {
+      "alias": "llama-3.3-70b",
+      "provider": "groq",
+      "provider_model": "llama-3.3-70b-versatile",
+      "tier": "free"
+    },
+    {
+      "alias": "llama-3.1-8b",
+      "provider": "groq",
+      "provider_model": "llama-3.1-8b-instant",
+      "tier": "free"
+    }
+  ]
+}

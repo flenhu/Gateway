@@ -1,0 +1,28 @@
+{
+  "id": "chatcmpl-mock-bestpick",
+  "object": "chat.completion",
+  "created": 1775111402,
+  "model": "llama-3.1-8b-instant",
+  "provider": "groq",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "For this prompt, the gateway picked Groq and returned the fastest available response without needing a fallback."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 26,
+    "completion_tokens": 19,
+    "total_tokens": 45
+  },
+  "gateway_meta": {
+    "latency_ms": 238,
+    "provider": "groq",
+    "fallback_used": false,
+    "cost_estimate_usd": 0.00000283
+  }
+}

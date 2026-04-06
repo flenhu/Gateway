@@ -48,6 +48,8 @@ type apiError struct {
 	Message string `json:"message"`
 }
 
+const maxCompletionRequestBodyBytes = 1 << 20
+
 func New(registry *provider.Registry) http.Handler {
 	if registry == nil {
 		registry, _ = provider.NewRegistry()
@@ -106,6 +108,8 @@ func (rt *Router) handleModels(w http.ResponseWriter, _ *http.Request) {
 }
 
 func (rt *Router) handleChatCompletions(w http.ResponseWriter, r *http.Request) {
+	r.Body = http.MaxBytesReader(w, r.Body, maxCompletionRequestBodyBytes)
+
 	var req models.CompletionRequest
 	decoder := json.NewDecoder(r.Body)
 	decoder.DisallowUnknownFields()
